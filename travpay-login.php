@@ -1,3 +1,49 @@
+<?php
+/*Login*/
+session_start();
+include("connection.php");
+if (!isset($_SESSION['mobile'])) {
+  if (isset($_POST['vlogin'])) {
+    $mobile = $_POST['mobile'];
+    $pass = $_POST['pass'];
+    $result = mysqli_query($con, "SELECT * From partner where mobile='$mobile' && pass='$pass'");
+    $row = mysqli_fetch_assoc($result);
+    // print_r($row[id]);
+    if ($row[mobile] == $mobile) {
+      $_SESSION['mobile'] = $row[mobile];
+      $_SESSION['id'] = $row['id'];
+      ?>
+
+      <SCRIPT LANGUAGE='JavaScript'>
+        window.location.href = '/dashboard.php';
+      </Script>
+    <?php
+        } else {
+          ?>
+      <SCRIPT LANGUAGE='JavaScript'>
+        alert('Please verify your Account Credentials');
+        window.location.href = 'travpay-login.php';
+      </Script>
+  <?php
+      }
+    }
+    ?>
+
+  <?php
+    ini_set("session.cookie_domain", ".thetravelsquare.in");
+    $cookie_name = "hash";
+    $method = "aes-256-cbc";
+    $key = 'pqrstuvwxyz$abcdefghijAB12345678';
+    $iv = 'DEFGHTABCIESPQXO';
+    $cookie_value = bin2hex(openssl_encrypt($mobile, $method, $key, OPENSSL_RAW_DATA, $iv));
+
+    setcookie($cookie_name, $cookie_value, time() + (900 * 30), "/", ".thetravelsquare.in");
+    ?>
+
+  <?php
+    if (!isset($_COOKIE[$cookie_name]))
+      ?>
+
 <!DOCTYPE html>
 
 	<html>		
@@ -191,9 +237,31 @@ hr {
     <script type="text/javascript" src="files/theme-scripts.js.download"></script>
     <script type="text/javascript" src="files/scripts.js.download"></script>
 
+<script>
+var myVar;
 
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
 
 
 
 
   </body></html>
+
+  <?php
+} else {
+  ?>
+  <SCRIPT LANGUAGE='JavaScript'>
+    window.location.href = '/dashboard.php';
+  </Script>
+
+<?php
+}
+?>

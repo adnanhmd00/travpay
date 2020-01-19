@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 
 	<html>
 	<head>
@@ -170,17 +170,11 @@ body {
 
                         
 
-                            <a href="http://www.thetravelsquare.in/login.php">
+                        
                             <font color="black">
-                                <a class="button white btn-small uppercase" style="height: 30px; font-size: 1em; color:black">
+                                <a href="travpay-login.php" class="button white btn-small uppercase" style="height: 30px; font-size: 1em; color:black">
                                 PARTNER LOGIN</a></font>
                             </a>
-
-                            <ul class="menu mini uppercase">
-                                                                <li><a href="/dashboard">Dashboard Home</a></li>
-                                    <li><a href="/lta-registration.php">Register</a></li>
-                                    <li><a href="/logout.php">Log Out</a></li>
-                            </ul>
                         </li>
                         
 
@@ -251,7 +245,7 @@ body {
                     
                     <ul class="mobile-topnav container">
                         <center><br>
-						<button class="button full-width white uppercase"><b><big><font color="black">PARTNER LOGIN</font></big></b></button>
+						<a href="travpay-login.php"><button class="button full-width white uppercase"><b><big><font color="black">PARTNER LOGIN</font></big></b></button></a>
                         
                     </ul>
                     <br>
@@ -703,9 +697,4 @@ body {
             slideshowSpeed: 5000
         });
     </script>
-
-
-
-
-
 </body></html>
